@@ -29,7 +29,7 @@ requirements:
     - mrjob >=0.7.4
     - testfixtures >=7.1.0
     - mock >=5.1.0
-    - approval-utilities ==12.2.1
+    - approval-utilities =={{ version }}
 
 test:
   imports:
