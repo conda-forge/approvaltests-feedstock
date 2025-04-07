@@ -1,5 +1,5 @@
 {% set name = "approvaltests" %}
-{% set version = "14.3.1" %}
+{% set version = "14.4.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/approvaltests-{{ version }}.tar.gz
-  sha256: 8eedfecb5f68651e3e6ea8b8c1124ece0bd4c14d3308d73616a65deeee0c793d
+  sha256: 76c329b4660d698648f6a738ef2da2b8c61b291691e75e231dcc57646a73bf57
 
 build:
   noarch: python
