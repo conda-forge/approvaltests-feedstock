@@ -23,15 +23,18 @@ requirements:
     - setuptools
   run:
     - python >=${{ python_min }}
-    - pytest >=4.0.0
+    # requirements.prod.required.txt
+    - pytest >=8.0.0
     - empty-files >=0.0.3
     - typing_extensions >=4.12.0
+    # requirements.prod.extras.txt
     - pyperclip >=1.5.29
     - beautifulsoup4 >=4.9.0
     - allpairspy >=2.1.0
     - testfixtures >=7.1.0,<12
     - mock >=5.1.0
-    - approval-utilities ==19.0.0
+    - psutil >=5.9.0
+    - approval-utilities ==${{ version }}
 
 tests:
   - python:
