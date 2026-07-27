@@ -1,7 +1,7 @@
 schema_version: 1
 
 context:
-  version: "19.0.0"
+  version: "19.1.0"
 
 package:
   name: approvaltests
@@ -9,7 +9,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/a/approvaltests/approvaltests-${{ version }}.tar.gz
-  sha256: 4ea52ba0db11825fb380a146f56b2d1af380ad979bce5f00759997d13285132d
+  sha256: a17ed1a6dce123c98de1e1a770c6c00bf4ea8c4dd5c403b67e3faa05aec38c53
 
 build:
   number: 0
@@ -23,15 +23,18 @@ requirements:
     - setuptools
   run:
     - python >=${{ python_min }}
-    - pytest >=4.0.0
+    # requirements.prod.required.txt
+    - pytest >=8.0.0
     - empty-files >=0.0.3
     - typing_extensions >=4.12.0
+    # requirements.prod.extras.txt
     - pyperclip >=1.5.29
     - beautifulsoup4 >=4.9.0
     - allpairspy >=2.1.0
     - testfixtures >=7.1.0,<12
     - mock >=5.1.0
-    - approval-utilities ==19.0.0
+    - psutil >=5.9.0
+    - approval-utilities ==${{ version }}
 
 tests:
   - python:
