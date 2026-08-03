@@ -2,54 +2,148 @@ schema_version: 1
 
 context:
   version: "19.1.1"
+  ignore_tests:
+    # missing files
+    - " --ignore tests/test_ai_fixer_loop.py"
+    # breaks pytest due to importing setup.py
+    - "--ignore tests/test_workflow_matrix.py"
+  py314_deselect:
+    # minor formatting differences
+    - "--deselect tests/logging/test_logging.py::test_basic_logging"
+    - "--deselect tests/logging/test_logging_examples.py::test_load_person_logs"
+    - "--deselect tests/logging/test_logging_examples.py::test_load_person_logs_and_results"
+    - "--deselect tests/logging/test_logging_examples.py::test_load_person_logs_and_results_separately"
+    - "--deselect tests/test_verify.py::VerifyTests::test_verify_html"
+    - "--deselect tests/utilities/test_command_line_callouts.py::test_argument_parser"
+    # failing over brotli-python reenabling GIL and causing a warning
+    - "--deselect tests/utilities/test_command_line_callouts.py::test_command_line_verify"
 
-package:
+recipe:
   name: approvaltests
   version: ${{ version }}
 
 source:
-  url: https://pypi.org/packages/source/a/approvaltests/approvaltests-${{ version }}.tar.gz
-  sha256: 0b049a815e5c8462a8dfde2b781bb5956c822e980b8ddd8c270a657a4d78dda3
+  url: https://github.com/approvals/ApprovalTests.Python/archive/v${{ version }}.tar.gz
+  sha256: ac351d3e0fd2f2e7ecf7a1d2be33d56424f07e4c4699c2fa2735c0a7a8120d35
 
 build:
-  number: 0
-  noarch: python
-  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-
-requirements:
-  host:
-    - python ${{ python_min }}.*
-    - pip
-    - setuptools
-  run:
-    - python >=${{ python_min }}
-    # requirements.prod.required.txt
-    - pytest >=8.0.0
-    - empty-files >=0.0.3
-    - typing_extensions >=4.12.0
-    # requirements.prod.extras.txt
-    - pyperclip >=1.5.29
-    - beautifulsoup4 >=4.9.0
-    - allpairspy >=2.1.0
-    - testfixtures >=7.1.0,<12
-    - mock >=5.1.0
-    - psutil >=5.9.0
-    - approval-utilities ==${{ version }}
-
-tests:
-  - python:
-      imports:
-        - approvaltests
-      pip_check: true
-      python_version:
-        - ${{ python_min }}.*
-        - "*"
+  number: 1
 
 about:
-  summary: Assertion/verification library to aid testing
   license: Apache-2.0
   license_file: LICENSE
   homepage: https://github.com/approvals/ApprovalTests.Python
+
+outputs:
+  - package:
+      name: approval-utilities
+
+    build:
+      noarch: python
+      script:
+        - cp setup/setup.approval_utilities.py setup.py
+        - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+    requirements:
+      host:
+        - python ${{ python_min }}.*
+        - setuptools >=69.0.0
+        - wheel
+        - pip
+      run:
+        - python >=${{ python_min }}
+        - typing_extensions >=4.12.0
+
+    tests:
+      - python:
+          imports:
+            - approval_utilities
+          pip_check: true
+          python_version:
+            - ${{ python_min }}.*
+            - "*"
+
+    about:
+      summary: Utilities for your production code that work well with approvaltests
+
+  - package:
+      name: approvaltests
+
+    build:
+      noarch: python
+      script:
+        - cp setup/setup.approvaltests.py setup.py
+        - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+    requirements:
+      host:
+        - python ${{ python_min }}.*
+        - pip
+        - setuptools
+      run:
+        - python >=${{ python_min }}
+        # requirements.prod.required.txt
+        - pytest >=8.0.0
+        - empty-files >=0.0.3
+        - typing_extensions >=4.12.0
+        # requirements.prod.extras.txt
+        - pyperclip >=1.5.29
+        - beautifulsoup4 >=4.9.0
+        - allpairspy >=2.1.0
+        - testfixtures >=7.1.0,<12
+        - mock >=5.1.0
+        - psutil >=5.9.0
+        - approval-utilities ==${{ version }}
+
+    tests:
+      - python:
+          imports:
+            - approvaltests
+          pip_check: true
+          python_version:
+            - ${{ python_min }}.*
+            - "*"
+
+    about:
+      summary: Assertion/verification library to aid testing
+
+  - package:
+      name: approvaltests-tests
+
+    build:
+      noarch: generic
+
+    requirements:
+      host:
+        - ${{ pin_subpackage('approvaltests') }}
+        - python
+
+    tests:
+      - script:
+# TODO: why doesn't the if work?
+#          - if: match(python, '<3.14')
+#            then:
+#              - TZ=UTC pytest ${{ ignore_tests | join(' ') }}
+#            else:
+              - TZ=UTC pytest -Wignore ${{ ignore_tests | join(' ') }} ${{ py314_deselect | join(' ') }}
+        requirements:
+          run:
+            - pytest-asyncio
+            - allpairspy
+            - empty-files
+            - numpy
+            - psutil
+            - pyyaml
+            - requests
+            - testfixtures
+        files:
+          source:
+            - approval_utilities/
+            - approvaltests/
+            - tests/
+
+    about:
+      summary: The test suite for approvaltests
 
 extra:
   recipe-maintainers:

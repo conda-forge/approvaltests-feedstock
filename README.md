@@ -1,13 +1,35 @@
-About approvaltests-feedstock
-=============================
+About approval-utilities-feedstock
+==================================
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/approvaltests-feedstock/blob/main/LICENSE.txt)
+
+
+About approval-utilities
+------------------------
+
+Home: https://github.com/approvals/ApprovalTests.Python
+
+Package license: Apache-2.0
+
+Summary: Utilities for your production code that work well with approvaltests
+
+About approvaltests
+-------------------
 
 Home: https://github.com/approvals/ApprovalTests.Python
 
 Package license: Apache-2.0
 
 Summary: Assertion/verification library to aid testing
+
+About approvaltests-tests
+-------------------------
+
+Home: https://github.com/approvals/ApprovalTests.Python
+
+Package license: Apache-2.0
+
+Summary: The test suite for approvaltests
 
 Current build status
 ====================
@@ -28,53 +50,55 @@ Current release info
 
 | Name | Downloads | Version | Platforms |
 | --- | --- | --- | --- |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-approval--utilities-green.svg)](https://anaconda.org/conda-forge/approval-utilities) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/approval-utilities.svg)](https://anaconda.org/conda-forge/approval-utilities) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/approval-utilities.svg)](https://anaconda.org/conda-forge/approval-utilities) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/approval-utilities.svg)](https://anaconda.org/conda-forge/approval-utilities) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-approvaltests-green.svg)](https://anaconda.org/conda-forge/approvaltests) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/approvaltests.svg)](https://anaconda.org/conda-forge/approvaltests) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/approvaltests.svg)](https://anaconda.org/conda-forge/approvaltests) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/approvaltests.svg)](https://anaconda.org/conda-forge/approvaltests) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-approvaltests--tests-green.svg)](https://anaconda.org/conda-forge/approvaltests-tests) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/approvaltests-tests.svg)](https://anaconda.org/conda-forge/approvaltests-tests) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/approvaltests-tests.svg)](https://anaconda.org/conda-forge/approvaltests-tests) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/approvaltests-tests.svg)](https://anaconda.org/conda-forge/approvaltests-tests) |
 
-Installing approvaltests
-========================
+Installing approval-utilities
+=============================
 
-Installing `approvaltests` from the `conda-forge` channel can be achieved by adding `conda-forge` to your channels with:
+Installing `approval-utilities` from the `conda-forge` channel can be achieved by adding `conda-forge` to your channels with:
 
 ```
 conda config --add channels conda-forge
 conda config --set channel_priority strict
 ```
 
-Once the `conda-forge` channel has been enabled, `approvaltests` can be installed with `conda`:
+Once the `conda-forge` channel has been enabled, `approval-utilities, approvaltests, approvaltests-tests` can be installed with `conda`:
 
 ```
-conda install approvaltests
-```
-
-or with `mamba`:
-
-```
-mamba install approvaltests
-```
-
-It is possible to list all of the versions of `approvaltests` available on your platform with `conda`:
-
-```
-conda search approvaltests --channel conda-forge
+conda install approval-utilities approvaltests approvaltests-tests
 ```
 
 or with `mamba`:
 
 ```
-mamba search approvaltests --channel conda-forge
+mamba install approval-utilities approvaltests approvaltests-tests
+```
+
+It is possible to list all of the versions of `approval-utilities` available on your platform with `conda`:
+
+```
+conda search approval-utilities --channel conda-forge
+```
+
+or with `mamba`:
+
+```
+mamba search approval-utilities --channel conda-forge
 ```
 
 Alternatively, `mamba repoquery` may provide more information:
 
 ```
 # Search all versions available on your platform:
-mamba repoquery search approvaltests --channel conda-forge
+mamba repoquery search approval-utilities --channel conda-forge
 
-# List packages depending on `approvaltests`:
-mamba repoquery whoneeds approvaltests --channel conda-forge
+# List packages depending on `approval-utilities`:
+mamba repoquery whoneeds approval-utilities --channel conda-forge
 
-# List dependencies of `approvaltests`:
-mamba repoquery depends approvaltests --channel conda-forge
+# List dependencies of `approval-utilities`:
+mamba repoquery depends approval-utilities --channel conda-forge
 ```
 
 
@@ -119,17 +143,17 @@ Terminology
                   produce the finished article (built conda distributions)
 
 
-Updating approvaltests-feedstock
-================================
+Updating approval-utilities-feedstock
+=====================================
 
-If you would like to improve the approvaltests recipe or build a new
+If you would like to improve the approval-utilities recipe or build a new
 package version, please fork this repository and submit a PR. Upon submission,
 your changes will be run on the appropriate platforms to give the reviewer an
 opportunity to confirm that the changes result in a successful build. Once
 merged, the recipe will be re-built and uploaded automatically to the
 `conda-forge` channel, whereupon the built conda packages will be available for
 everybody to install and use from the `conda-forge` channel.
-Note that all branches in the conda-forge/approvaltests-feedstock are
+Note that all branches in the conda-forge/approval-utilities-feedstock are
 immediately built and any created packages are uploaded, so PRs should be based
 on branches in forks, and branches in the main repository should only be used to
 build distinct package versions.
