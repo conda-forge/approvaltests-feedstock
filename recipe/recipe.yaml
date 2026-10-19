@@ -26,7 +26,7 @@ requirements:
     # requirements.prod.required.txt
     - pytest >=8.0.0
     - empty-files >=0.0.3
-    - typing_extensions >=4.12.0
+    - typing_extensions >=4.16.0
     # requirements.prod.extras.txt
     - pyperclip >=1.5.29
     - beautifulsoup4 >=4.9.0
