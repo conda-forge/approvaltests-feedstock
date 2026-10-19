@@ -1,7 +1,7 @@
 schema_version: 1
 
 context:
-  version: "19.1.1"
+  version: "20.0.0"
 
 package:
   name: approvaltests
@@ -9,7 +9,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/a/approvaltests/approvaltests-${{ version }}.tar.gz
-  sha256: 0b049a815e5c8462a8dfde2b781bb5956c822e980b8ddd8c270a657a4d78dda3
+  sha256: da2122c3113f8c894b18a5affe3fd8c85b0965eb982f8d932e0228531c640341
 
 build:
   number: 0
@@ -26,7 +26,7 @@ requirements:
     # requirements.prod.required.txt
     - pytest >=8.0.0
     - empty-files >=0.0.3
-    - typing_extensions >=4.12.0
+    - typing_extensions >=4.16.0
     # requirements.prod.extras.txt
     - pyperclip >=1.5.29
     - beautifulsoup4 >=4.9.0
