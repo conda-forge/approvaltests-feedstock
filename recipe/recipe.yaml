@@ -1,7 +1,7 @@
 schema_version: 1
 
 context:
-  version: "20.0.1"
+  version: "21.1.0"
 
 package:
   name: approvaltests
@@ -9,7 +9,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/a/approvaltests/approvaltests-${{ version }}.tar.gz
-  sha256: 55f6e66a06bf0e2d5ddf3a8b40181a4c82dedf766d193adbf9c19cdb74992ce9
+  sha256: e55a93777d1d25ec9a29711e0bb0d2364fb98ca3eb3aba69e945e4cf9e5906dd
 
 build:
   number: 0
